@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>BOOKMARKTOPIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>BOOKMARKTOPIA</h1>
+    <div class=viewMode-stuff>
+    
+    <div class="bookmark-add">
+      <!---ADD NEW ITEM BUTTON -->
+      <button class="js-bookmark-add" ${editBtnStatus}>
+        <span class="button-label">Add A New Bookmark</span>
+      </button>
+       
+    </div>
+  
+
+    <!---ADD NEW ITEM FORM -->
+    
+    <form id="js-shopping-list-form">
+       
+      <label for="shopping-list-entry">Add a bookmark title</label>
+      <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="something snappy">
+      <button type="submit">ADD A NEW BOOKMARK</button>
+      <div>
+        <input type="checkbox" id="filter-checked" class="filter-checked js-filter-checked" />
+        <label for="filter-checked">Hide Checked</label>
+      </div>
+      <div>
+        <label for="js-shopping-list-search-entry">Search:</label>
+        <input type="text" name="shopping-list-search-entry" class="js-shopping-list-search-entry" />
+      </div>
+       
+    </form>
+  
+</div>
+
+    <ul class="shopping-list js-shopping-list">
+    </ul>
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+  <script type="text/javascript" src="scripts/api_test.js"></script>
+  <!--<script type="text/javascript" src="scripts/Item.js"></script>-->
+  <script type="text/javascript" src="scripts/store.js"></script>
+  <script type="text/javascript" src="scripts/bookmark-list.js"></script>
+  <script type="text/javascript" src="scripts/api.js"></script>
+  <script type="text/javascript" src="scripts/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button, input[type="text"] {
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 7px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:hover:disabled {
+  cursor: default;
+}
+
+.hidden {
+  display: none;
+}
+
+#shopping-list-item {
+  width: 250px;
+}
+
+.container {
+  max-width: 600px;
+  margin-left: 0;
+  padding-left: 125px;
+  /*margin: 0 auto;*/
+}
+
+.shopping-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+
+
+.bookmark-add {
+  list-style: none;
+  padding-left: 0;
+}
+
+.viewMode-stuff {
+
+  padding-left: 0;
+
+}
+
+.shopping-list > li {
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.shopping-item {
+  display: block;
+  color: grey;
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.shopping-item__checked {
+  text-decoration: line-through;
+}
