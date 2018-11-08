@@ -55,7 +55,7 @@ const store = (function(){
     items: [],
     hideCheckedItems: false,
     searchTerm: '',
-    viewMode: 'add_mode',
+    viewMode: 'reg_mode',
 
     addItem,
     findById,

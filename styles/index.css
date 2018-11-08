@@ -9,7 +9,35 @@ body {
 button, input[type="text"] {
   padding: 5px;
   border: 1px solid grey;
+  border-radius: 3px;
+  width: 350px;
+}
+
+#js-add-bookmark-form {
+
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 10px;
+
+
+}
+
+.js-add-form {
+
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 10px;
+
+
+}
+
+.general-submit-button {
+
+  width: 150px;
   border-radius: 7px;
+
 }
 
 button:hover {
@@ -24,8 +52,8 @@ button:hover:disabled {
   display: none;
 }
 
-#shopping-list-item {
-  width: 250px;
+#bookmark-list-item {
+  width: 250px;/* 250px */
 }
 
 .container {
@@ -35,7 +63,7 @@ button:hover:disabled {
   /*margin: 0 auto;*/
 }
 
-.shopping-list {
+.bookmark-list {
   list-style: none;
   padding-left: 0;
 }
@@ -47,20 +75,27 @@ button:hover:disabled {
   padding-left: 0;
 }
 
+.js-bookmark-add-button{
+  list-style: none;
+  padding-left: 0;
+  width: 150px;
+  border-radius: 7px;
+}
+
 .viewMode-stuff {
 
   padding-left: 0;
 
 }
 
-.shopping-list > li {
+.bookmark-list > li {
   margin-bottom: 20px;
   border: 1px solid grey;
   padding: 20px;
   border-radius: 10px;
 }
 
-.shopping-item {
+.bookmark-item {
   display: block;
   color: grey;
   font-style: italic;
@@ -71,3 +106,41 @@ button:hover:disabled {
 .shopping-item__checked {
   text-decoration: line-through;
 }
+
+
+.js-bookmark-list-entry {
+
+  color: blue;
+
+}
+
+.js-bookmark-title-entry {
+
+  color: blue;
+
+}
+
+.js-bookmark-desc-entry {
+
+  color: blue;
+
+}
+
+.js-bookmark-url-entry {
+
+  color: blue;
+
+}
+
+.js-collapse-button {
+
+  color: red;
+ 
+
+}
+
+ .js-start-add-button {
+
+  color: red;
+
+ }
