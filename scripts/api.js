@@ -9,7 +9,6 @@ const api = (function() {
   function getItems(callback) {
     $.getJSON(`${BASE_URL}/bookmarks`, callback);
      
-
   }
 
   function createItem(newItemObject, callbackSuccess, callbackError) {
@@ -17,7 +16,7 @@ const api = (function() {
     //for item name
     const newItem = JSON.stringify(newItemObject);
 
-    console.log('>>> new item data: ', newItemObject);
+    //console.log('>>> new item data: ', newItemObject);
  
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
@@ -35,7 +34,7 @@ const api = (function() {
     const stringifiedUpdateData = JSON.stringify(updateData);
 
     //testing
-    console.log('--> to go to seerver: ',updateData);
+    //console.log('--> to go to server: ',updateData);
 
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,

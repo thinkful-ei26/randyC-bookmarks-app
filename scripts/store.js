@@ -1,4 +1,4 @@
-/* global Item */
+/* global */
 'use strict';
 
 // eslint-disable-next-line no-unused-vars
@@ -34,7 +34,7 @@ const store = (function(){
     this.items = this.items.filter(item => item.id !== id);
   };
 
-  //update stuff
+  //update stuff in items
   const findAndUpdate = function(id, newData){
 
     const item = this.findById(id);
@@ -43,6 +43,18 @@ const store = (function(){
 
   };
 
+
+
+  //update stuff in store
+  /*
+  const findAndUpdateStore = function(newData){
+
+    const storeUpdate = 
+ 
+    Object.assign(item,newData); 
+
+  };
+*/
   
   // const findAndUpdateName = function(id, name) {
   //   try {
@@ -67,14 +79,17 @@ const store = (function(){
     this.searchTerm = term;
   };
 
-  //REF  items: [],
-    //hideCheckedItems: false,
-    //searchTerm: '',
-    //viewMode: 'reg_mode',
+
+
+  //Added to store object:
+  // viewMode
+  // userSort
+  // errorMode
+   
 
   return {
     items: [],
-    viewMode: 'reg_mode',
+    viewMode: 'first_mode',
     userSort: 'no sort',
     errorMode: false,
 

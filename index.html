@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" role="main">
     <h1>BOOKMARKUTOPIA</h1>
  
     <div class=viewMode-stuff>
@@ -20,13 +20,12 @@
         <p class="button-label">Add A New Bookmark</p>
       </button>
         <form id="js-sort-form" class = "js-rating-form">
-        <select id = "rating_value" name="SORT BY RATING">
+        <select id = "rating_value" name="SORT BY RATING" aria-label="Sort Bookmarks by rating">
         <option value="no sort">no sort</option>
-        <option value="high to low">high to low</option>  
-        <option value= 1 >1</option>
-        <option value= 2 >2</option>
-        <option value= 3 >3</option>
-        <option value= 4 >4</option>
+        <option value= 1 >above 1</option>
+        <option value= 2 >above 2</option>
+        <option value= 3 >above 3</option>
+        <option value= 4 >above 4</option>
         <option value= 5 >5</option>
         </select>
         <input type="submit" value="SUBMIT">
@@ -37,9 +36,10 @@
     </div>
    
     <!---ADD NEW ITEM FORM -->
-    
-    <form id="js-add-bookmark-form" class = "js-add-form">
-      <!-- 
+    <div id = "form_container">
+
+    <!-- <form id="js-add-bookmark-form" class = "js-add-form">
+      
       
       <input type="text" name="bookmark-title-entry" class="js-bookmark-title-entry" placeholder="Add title here -- something snappy">
       <br><br>
@@ -52,7 +52,12 @@
     
        -->
        
-    </form>
+    <!---</form>-->
+
+
+    </div>
+
+
     </div>
  
     <!---REF <ul class="shopping-list js-shopping-list">-->

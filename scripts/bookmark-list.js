@@ -1,36 +1,11 @@
-/* global store, api, api_test $ */
+/* global store, api, $ */
 'use strict';
 
 // eslint-disable-next-line no-unused-vars
 const bookmarkList = (function(){
- 
+  
   function generateItemElement(item) {
- 
-
-    //console.log(api_test.helloThere);//testing alternate module
- 
-    //REF change a class 
-    //const checkedClass = item.expandedView ? 'shopping-item__checked' : '';
-
-    //REF disable a button
-    //const editBtnStatus = item.expandedView ? 'disabled' : '';
      
-    
-
-
-    //REF let itemTitle = `<span class="shopping-item ${checkedClass}">${item.name}</span>`;
-    let itemTitle = `<span class="bookmark-item">${item.title}</span>`;
-
-    let itemDescription = `<span class="bookmark-item">${item.desc}</span>`;
-
-    let itemUrl = `<span class="bookmark-item">${item.url}</span>`;
- 
-    let itemRating = `</span>${item.rating}</span>`;
-
-    let showExpandedVal = `<span class="bookmark-item">${item.expandedView}</span>`;
-
-    //default to collapsed...?
-
     //REF<li class="js-item-element" data-item-id="${item.id}">
     let itemView = '';
 
@@ -38,15 +13,17 @@ const bookmarkList = (function(){
     // >>>  COMPACT MODE -- itemView: 'compact'
     //TITLE
     //RATING
+    //GO TO LINK
 
     // >>> EXPANDED MODE -- itemView: 'expanded'
     //TITLE
     //DESCRIPTION
     //URL
     //RATING
-
+    //GO TO LINK
  
-    //review for add and edit ...
+    //REF for add and edit ...
+    /*
     if (item.isEditing) {
       itemTitle = `
         <form class="js-edit-item">
@@ -54,9 +31,31 @@ const bookmarkList = (function(){
         </form>
       `;
     }
+    */
 
-    //expanded view of item
+    //first time store is viewd collapse all item views
+    if(store.viewMode === 'first_mode'){
+
+      item.expandedView = false;
+ 
+    }
+
+    //SHOW EXPANDED
     if(item.expandedView === true){
+
+      //REF let itemTitle = `<span class="shopping-item ${checkedClass}">${item.name}</span>`;
+      let itemTitle = `<span class="bookmark-item_title">${item.title}</span>`;
+
+      let itemDescription = `<span class="bookmark-item_desc">${item.desc}</span>`;
+
+      let itemUrl = `<span class="bookmark-item_url">${item.url}</span>`;
+ 
+      let itemRating = `<span>${item.rating}</span>`;
+
+      //let showExpandedVal = `<span class="bookmark-item">${item.expandedView}</span>`;
+
+
+
 
       itemView = `
 
@@ -73,6 +72,9 @@ const bookmarkList = (function(){
         <button class="bookmark-item-delete js-item-delete">
           <span class="button-label">delete</span>
         </button>
+        <p> 
+        <a class="js-go-button" href="${item.url}">GO TO LINK!</a>
+        </p>
       </div>
       </li>
        
@@ -80,32 +82,46 @@ const bookmarkList = (function(){
        
  
     } 
-
-
-
-    
-
-
+ 
     //collapsed view of item only Title and rating
+    //Title should get bigger
+    //Button to got to link
+    //Button to uncollapse
+    //Rating should show
+
+    //SHOW COLLAPSED
     if(item.expandedView === false){
 
+      //REF let itemTitle = `<span class="shopping-item ${checkedClass}">${item.name}</span>`;
+      let itemTitle = `<span class="Bigger_Title">${item.title}</span>`;
+
+      let itemDescription = `<span class="bookmark-item">${item.desc}</span>`;
+
+      let itemUrl = `<span class="bookmark-item">${item.url}</span>`;
+ 
+      let itemRating = `<span>${item.rating}</span>`;
+
+      //let showExpandedVal = `<span class="bookmark-item">${item.expandedView}</span>`;
+ 
       itemView = `
        
-      <li class="js-item-collapsed" data-item-id="${item.id}">
+      <li class="js-item-element" data-item-id="${item.id}">
       <p class = "right-rating" >RATING: ${itemRating}</p>
       <p>${itemTitle}</p>
+      <button class="js-expand-button">
+          <span class="button-label">SHOW DETAILS</span>
+      </button>
+        <p> 
+        <a class="js-go-button" href="${item.url}">GO TO LINK!</a>
+        </p>
       </li>
 
       `;
        
  
     } 
-  
-    //default expanded view ... 
-
-    //console.log('item expanded ? >>>>> ',item.itemExpanded);//testing alternate module
-
-    
+   
+    //DISPLAY ITEMS LIST
     return `
     ${itemView}
   `;   
@@ -140,48 +156,25 @@ const bookmarkList = (function(){
 
     console.log('store.userSort = ',myUserSortOption);
     
-    if (myUserSortOption !== 'no sort' && myUserSortOption !== 'high to low') {
+    if (myUserSortOption !== 'no sort') {
 
       myUserSortOption = parseInt(myUserSortOption);
+      
+      if(myUserSortOption < 5){
+
+        items = items.filter(item => item.rating > myUserSortOption);
+
+      }
        
-      items = items.filter(item => item.rating === myUserSortOption);
+      if(myUserSortOption === 5){
+
+        items = items.filter(item => item.rating === myUserSortOption);
+
+      }
 
     }
 
-    //Highest to lowest
-    
-    //not working...
-    /*
-    if (myUserSortOption === 'high to low') {
-       
-
-      //5 
-      const items_5 = items.filter(item => {item.rating === 5;items.push(items_5);});
-  
-      //4 
-      const items_4 = items.filter(item => item.rating === 4);
-
-      items.push(items_4);
-
-      //3 
-      const items_3 = items.filter(item => item.rating === 3);
-
-      items.push(items_3);
-
-      //2 
-      const items_2 = items.filter(item => item.rating === 2);
-
-      items.push(items_2);
-
-      //1 
-      const items_1 = items.filter(item => item.rating === 1);
-
-      items.push(items_1); 
-
-    }
-    */
-    
-
+     
 
     const bookmarkItemsString = generateBookmarkItemsString(items);
      
@@ -195,28 +188,51 @@ const bookmarkList = (function(){
 
     if(store.viewMode === 'add_mode'){
 
+      let errorMessage = '';
+      let placeholder_title = 'class="js-bookmark-title-entry" placeholder="Add title here -- something snappy';
+      let placeholder_url = 'class="js-bookmark-url-entry" placeholder="Add url here ... http://.... enter url';
+      
+      //ERROR MODE
+       
+      if (store.errorMode === true){
+
+        errorMessage = '<p class = "error_class"> Whoops! Please add Title and Url... </p>';
+        //placeholder_title = 'class="js-bookmark-title-entry_error" placeholder="TITLE IS REQUIRED';
+        //placeholder_url = 'class="js-bookmark-url-entry_error" placeholder="URL IS REQUIRED ... http://.... enter url';
+ 
+      }
+       
+
+      
       itemAddForm = `
       
-      <input type="text" name="bookmark-title-entry" class="js-bookmark-title-entry" placeholder="Add title here -- something snappy">
+      <form id="js-add-bookmark-form" class = "js-add-form" aria-label="Sort Bookmarks by rating">
+
+      <h3>Add the bookmark details:</h3>
+      ${errorMessage}
+      <br> 
+      Title: <input type="text" name="bookmark-title-entry" ${placeholder_title}">
       <br>
-      <input type="text" name="bookmark-desc-entry" class="js-bookmark-desc-entry" placeholder="Add general description">
+      Description: <input type="text" name="bookmark-desc-entry" class="js-bookmark-desc-entry" placeholder="Add general description">
       <br>
-      <input type="text" name="bookmark-url-entry" class="js-bookmark-url-entry" placeholder="Add url here ... http://.... enter url">
+      http://www. <input type="text" name="bookmark-url-entry" ${placeholder_url}">
       <br>
        
       <p>Rating: </p>
-      <form>
+       
       <input type="radio" name="rating" value="1" checked> 1 star<br>
       <input type="radio" name="rating" value="2"> 2 stars<br>
       <input type="radio" name="rating" value="3"> 3 stars<br>
       <input type="radio" name="rating" value="4"> 4 stars<br>
       <input type="radio" name="rating" value="5"> 5 stars<br>
-      </form>
+      
+      
        
       <br><br>
       <button type="submit" class = "general-submit-button">SUBMIT</button>
+      <button type="button" class = "general-submit-button">CANCEL</button>
       <br>
-      
+      </form>
       
       
       `;
@@ -224,7 +240,7 @@ const bookmarkList = (function(){
  
     }
 
-    if(store.viewMode === 'reg_mode'){
+    if(store.viewMode === 'reg_mode' || store.viewMode === 'first_mode'){
 
       itemAddForm = `
  
@@ -235,7 +251,7 @@ const bookmarkList = (function(){
     }
 
 
-    $('.js-add-form').html(itemAddForm);
+    $('#form_container').html(itemAddForm);
     $('.js-bookmark-list').html(bookmarkItemsString);
 
 
@@ -263,38 +279,80 @@ const bookmarkList = (function(){
   
   }
  
-
+  // $('#js-add-bookmark-form').submit(function (event) {
   
   //get new item details from input boxes
   function handleNewItemSubmit() {
-    $('#js-add-bookmark-form').submit(function (event) {
+    $('#form_container').on('submit','#js-add-bookmark-form', (event) => {
 
       event.preventDefault();
 
       //ref const newItemName = $('.js-shopping-list-entry').val();
-        
-      const newItemTitle = $('.js-bookmark-title-entry').val(); 
       
-      //clear text input box
-      $('js-bookmark-title-entry').val('');
+      let newItemTitle = '';
+
+      newItemTitle = $('.js-bookmark-title-entry').val(); 
+
+      /*
+      if (store.errorMode === false){
+      
+        newItemTitle = $('.js-bookmark-title-entry').val(); 
+
+      }
+
+      if (store.errorMode === true){
+      
+        newItemTitle = $('.js-bookmark-title-entry_error').val(); 
+
+      }
+      */
+      
+      
   
 
       //testing -- will get from input text
-      const newItemDescription = $('.js-bookmark-desc-entry').val(); 
+      let newItemDescription = $('.js-bookmark-desc-entry').val(); 
 
-      //clear text input box
-      $('js-bookmark-desc-entry').val('');
+      if(newItemDescription === ''){
+
+        newItemDescription = 'Sorry no description for this one...';
+
+      }
+
+      
 
       //testing -- will get from input box
-      const newItemUrl = $('.js-bookmark-url-entry').val();
 
-      //clear text input box
-      $('js-bookmark-url-entry').val('');
+      //need to check if person types http it and if so ignore adding it....
+
+      //if first six vals === http:// then dont add http:// instead jsut use it....
+
+
+      let newItemUrl = '';
+  
+      newItemUrl = $('.js-bookmark-url-entry').val();
+      
+      //Append Http to item 
+      if(newItemUrl !== ''){
+
+        newItemUrl = 'http://www.' + newItemUrl;
+
+      }
+         
+       
+      if(newItemUrl === 'http://www. '){
+
+        newItemUrl = '';
+
+      }
+
+     
       
       
       //testing -- will get from input text
  
-      const newItemRating = $('input[name="rating"]:checked').val();
+      let newItemRating = $('input[name="rating"]:checked').val();
+ 
       
 
       //testing -- gets generated
@@ -321,17 +379,42 @@ const bookmarkList = (function(){
 
       //REF api.createItem(newItemName, (newItem) => {
       api.createItem(newItemObject, function (newItem){
-        
+ 
         store.addItem(newItem);
+
+
+        //clear text input box
+        $('js-bookmark-title-entry').val('');
+
+        //clear text input box
+        $('js-bookmark-url-entry').val('');
+
+        //clear text input box
+        $('js-bookmark-desc-entry').val('');
+
 
         //change back to regular view since adding is now done....
         store.viewMode = 'reg_mode';
 
+        store.errorMode = false;
+
         render();
 
-      }, (error) => {window.alert(error.responseJSON.message);});
+      }, (error) => {
+        
+        //window.alert(error.responseJSON.message);
+
+        let myMessage = error;
+
+        store.errorMode = true;
+
+        render();
+
+        
       
-      //render();
+      });
+      
+      //REF (error) => {window.alert(error.responseJSON.message);});
     });
   }
   
@@ -351,77 +434,53 @@ const bookmarkList = (function(){
   function handleItemCollapseClicked() {
 
     $('.js-bookmark-list').on('click', '.js-collapse-button', event => {
-      const item = store.findById(getItemIdFromElement(event.currentTarget));
-      //const id = getItemIdFromElement(event.currentTarget);
+        
+      const id = getItemIdFromElement(event.currentTarget);
 
-      //const passThis = {expandedView: false};
+      console.log('>>> id >>> ',id);
 
-      //testing
-      //api.updateItem(id,passThis,() =>{}, () =>{});
-
-
-      //console.log('expandedView: ',item.expandedView);
-
-      //*** QUESTION #1
-       
-      //this needs to get stuff back to server! PATCH ERROR!
-
-      /*
-      api.updateItem(item.id, {expandedView: false}, () => {
-        //store.findAndUpdate(item.id, {checked: !item.checked});
-        store.findAndUpdate(item.id, {expandedView: false});
-        render();
-      }, (error) => {window.alert(error.responseJSON.message);});
-      */
-
-      /* 
-      api.updateItem(item.id, {expandedView: !item.expandedView}, 
+      store.findAndUpdate(id, {expandedView: false});
       
-        function() {
-          //store.findAndUpdate(item.id, {checked: !item.checked});
-          store.findAndUpdate(item.id, {expandedView: !item.expandedView});
-          render();
-        },
-        function(error){
-          window.alert(error.responseJSON.message);
-        
-        }
-        
-      );
-      */  
-       
- 
-      item.expandedView = false;//temporary 
-
       render();
+       
  
- 
-      
-
     });
 
 
   }
   
-   
-  //NOT WORKING...
-  //this for expand when its collapsed when no button is visible
+  
+  //this for expand when its collapsed when show details button is clicked
   function handleItemExpandClicked() {
 
-    $('.bookmark-list').on('click', '.js-item-collapsed', event => {
-      const item = store.findById(getItemIdFromElement(event.currentTarget));
-  
- 
-      item.expandedView = true;//temporary 
+    $('.js-bookmark-list').on('click', '.js-expand-button', event => {
+       
+      const id = getItemIdFromElement(event.currentTarget);
 
-      render();
+      console.log('>>> id >>> ',id);
  
+      store.findAndUpdate(id, {expandedView: true});
+
+
+      //change to reg mode after intial view
+   
+      if(store.viewMode === 'first_mode'){
+
+        store.viewMode = 'reg_mode';
+
+      }
+   
+
+
+      
+      render();
+       
 
     });
 
 
   }
-
+ 
 
   //SET SORTING OPTION
   function handleSortOptionSubmit() {
@@ -440,10 +499,7 @@ const bookmarkList = (function(){
     });
 
   }
-
-
-
-
+ 
   //delete button works!
   function handleDeleteItemClicked() {
     // like in `handleItemCheckClicked`, we use event delegation
@@ -456,63 +512,27 @@ const bookmarkList = (function(){
       }, (error) => {window.alert(error.responseJSON.message);});
     });
   }
-  
-
-  function handleEditShoppingItemSubmit() {
-    $('.js-bookmark-list').on('submit', '.js-edit-item', event => {
-      event.preventDefault();
-      const id = getItemIdFromElement(event.currentTarget);
-      const itemName = $(event.currentTarget).find('.bookmark-item').val();
-
-      api.updateItem(id, {name: itemName}, () => {
-        store.findAndUpdate(id, {name: itemName});
-        render();
-      }, (error) => {window.alert(error.responseJSON.message);});
-      store.setItemIsEditing(id, false);
-    });
-  }
-  
-  function handleToggleFilterClick() {
-    $('.js-filter-checked').click(() => {
-      store.toggleCheckedFilter();
-      render();
-    });
-  }
-  
-  /*
-  function handleShoppingListSearch() {
-    $('.js-shopping-list-search-entry').on('keyup', event => {
-      const val = $(event.currentTarget).val();
-      store.setSearchTerm(val);
-      render();
-    });
-  }
-  */
-
-
-  function handleItemStartEditing() {
-    $('.js-bookmark-list').on('click', '.js-item-edit', event => {
-      const id = getItemIdFromElement(event.target);
-      store.setItemIsEditing(id, true);
-      render();
-    });
-  }
-  
+   
   function bindEventListeners() {
     handleSortOptionSubmit();
     handleNewItemSubmit();
     handleItemExpandClicked();
     handleItemCollapseClicked();
     handleDeleteItemClicked();
-    handleEditShoppingItemSubmit();
-    handleToggleFilterClick();
-    handleItemStartEditing();
+    //handleItemGoClicked();
+    //handleEditShoppingItemSubmit();
+    //handleToggleFilterClick();
+    //handleItemStartEditing();
     handleStartItemSubmit();
   }
 
+  
   // This object contains the only exposed methods from this module:
   return {
     render: render,
     bindEventListeners: bindEventListeners,
   };
+
+  
+
 }());

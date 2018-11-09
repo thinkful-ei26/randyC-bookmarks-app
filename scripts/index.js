@@ -1,4 +1,4 @@
-/* global bookmarkList, shoppingList, store, Item, api, api_test */
+/* global bookmarkList, store, api */
 /* eslint-env jquery */
 'use strict';
  
@@ -10,3 +10,4 @@ $(document).ready(function() {
   bookmarkList.bindEventListeners();
   bookmarkList.render();
 });
+

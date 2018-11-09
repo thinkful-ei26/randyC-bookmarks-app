@@ -96,33 +96,70 @@ button:hover:disabled {
 
 .js-add-form {
   width: 550px;
-  padding-left: 0;
-  margin-bottom: 20px;
-  border: 1px solid grey;
-  padding: 20px;
+  padding-left: 40;
+  margin-left: -40px;
+  margin-bottom: 2px;
+  border: 3px solid rgb(43, 33, 126);
+  padding: 10px;
   border-radius: 10px;
    
 
 }
 
 
-.bookmark-list > li {
-  width: 550px;
+/*.bookmark-list > li {*/
+
+.bookmark-list {
+
+  /*width: 550px;*/
   list-style: none;
   padding-left: 0;
   margin-bottom: 20px;
-  border: 1px solid grey;
+  /*border: 1px solid grey;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 10px;*/
    
 }
 
 .bookmark-item {
+
+  /*display: block;*/
   display: block;
-  color: grey;
-  font-style: italic;
-  font-size: 20px;
+  color: rgb(73, 79, 114);
+  font-style: normal;
+  font-size: 25px;
   margin-bottom: 15px;
+
+}
+
+.bookmark-item_title {
+  
+  display: block;
+  color: rgb(73, 79, 114);
+  font-style: normal;
+  font-size: 25px;
+  margin-bottom: 10px;
+
+}
+
+.bookmark-item_desc {
+  
+  display: block;
+  color: rgb(73, 79, 114);
+  font-style: normal;
+  font-size: 15px;
+  margin-bottom: 10px;
+
+}
+
+.bookmark-item_url {
+ 
+  display: block;
+  color: rgb(73, 79, 114);
+  font-style: normal;
+  font-size: 15px;
+  margin-bottom: 10px;
+
 }
 
 .shopping-item__checked {
@@ -138,34 +175,84 @@ button:hover:disabled {
 
 .js-bookmark-title-entry {
 
+  text-align: center;
+  margin-bottom: 5px;
   color: blue;
+
+}
+
+.js-bookmark-title-entry_error {
+
+  font-style: bold;
+  text-align: center;
+  margin-bottom: 5px;
+  color: red;
 
 }
 
 .js-bookmark-desc-entry {
 
+  text-align: center;
+  margin-bottom: 5px;
   color: blue;
 
 }
 
 .js-bookmark-url-entry {
 
+  text-align: center;
+  margin-bottom: 5px;
   color: blue;
+
+}
+
+.js-bookmark-url-entry_error {
+
+  font-style: bold;
+  text-align: center;
+  margin-bottom: 5px;
+  color: red;
 
 }
 
 .js-collapse-button {
 
-  color: red;
+  color: black;
  
 
 }
 
+.js-expand-button {
+
+  color: black;
+ 
+
+}
+
+.js-go-button {
   
+  height: 15px;
+  width: 150px;
+  padding: 3px;
+  text-decoration: none;
+  font-style: bold;
+  font-size: 25px;
+  border: 2px;
+  border-style: solid;
+  border-color: rgb(73, 79, 114);
+  border-radius: 7px;
+  color: rgb(73, 79, 114);
+ 
+
+}
 
 .js-start-add-button {
-
-  width: 150px;
+ 
+  font-style: bold;
+  font-size: 15px;
+  color: rgb(73, 79, 114);
+  border-color: rgb(73, 79, 114);
+  width: 200px;
   border-radius: 7px;
 
 }
@@ -174,5 +261,54 @@ button:hover:disabled {
 
   width: 150px;
   border-radius: 7px;
+
+}
+
+/* for collapsed items */
+.Bigger_Title {
+
+  color: rgb(73, 79, 114);
+  font-style: normal;
+  font-size: 35px;
+ 
+}
+
+.js-item-collapsed {
+
+  width: 550px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2px;
+  border: 1px solid grey;
+  padding: 15px;
+  border-radius: 10px;
+
+}
+
+
+.js-item-element {
+
+  width: 550px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2px;
+  border: 1px solid grey;
+  padding: 15px;
+  border-radius: 10px;
+
+
+}
+
+.error_class {
+
+  padding: 4px;
+  font-style: bold;
+  font-size: 18px;
+  color: red;
+  border-color: red;
+  border-style: solid;
+  width: 320px;
+  border-radius: 7px;
+
 
 }
