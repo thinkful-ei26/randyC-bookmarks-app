@@ -44,7 +44,7 @@ const bookmarkList = (function(){
     if(item.expandedView === true){
 
       //REF let itemTitle = `<span class="shopping-item ${checkedClass}">${item.name}</span>`;
-      let itemTitle = `<span class="bookmark-item_title">${item.title}</span>`;
+      let itemTitle = `<span class="Bigger_Title">${item.title}</span>`;
 
       let itemDescription = `<span class="bookmark-item_desc">${item.desc}</span>`;
 
@@ -230,7 +230,7 @@ const bookmarkList = (function(){
        
       <br><br>
       <button type="submit" class = "general-submit-button">SUBMIT</button>
-      <button type="button" class = "general-submit-button">CANCEL</button>
+      <button type="button" class = "js-cancel-button">CANCEL</button>
       <br>
       </form>
       
@@ -417,6 +417,31 @@ const bookmarkList = (function(){
       //REF (error) => {window.alert(error.responseJSON.message);});
     });
   }
+
+
+  
+  //this for expand when its collapsed when show details button is clicked
+  function handleItemCancelClicked() {
+
+    $('#form_container').on('click', '.js-cancel-button', event => {
+       
+      const id = getItemIdFromElement(event.currentTarget);
+
+      console.log('>>> id >>> ',id);
+ 
+      store.viewMode = 'reg_mode';
+ 
+      render();
+       
+
+    });
+
+
+  }
+
+
+
+
   
   function getItemIdFromElement(item) {
     return $(item)
@@ -424,12 +449,7 @@ const bookmarkList = (function(){
       .data('item-id');
   }
   
-  //this will be the Expand when item is in collapsed view bookmark-item-toggle
-
-  //REF $('.js-bookmark-list').on('click', '.js-item-toggle', event => {
-
-
-
+   
   //this for collapse when collapse button is visible
   function handleItemCollapseClicked() {
 
@@ -519,6 +539,7 @@ const bookmarkList = (function(){
     handleItemExpandClicked();
     handleItemCollapseClicked();
     handleDeleteItemClicked();
+    handleItemCancelClicked();
     //handleItemGoClicked();
     //handleEditShoppingItemSubmit();
     //handleToggleFilterClick();

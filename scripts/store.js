@@ -7,7 +7,7 @@ const store = (function(){
 
     //should be set to false eventually for startup
     //add expandedView key and sets it to true
-    item.expandedView = true;
+    item.expandedView = false;
 
     //add key for user to filer by rating
     //item.userFilter = '1';
