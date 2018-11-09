@@ -270,6 +270,7 @@ button:hover:disabled {
   color: rgb(73, 79, 114);
   font-style: normal;
   font-size: 35px;
+  padding-bottom: 15px;
  
 }
 
@@ -304,8 +305,9 @@ button:hover:disabled {
   padding: 4px;
   font-style: bold;
   font-size: 18px;
-  color: red;
-  border-color: red;
+  color: white;
+  background-color: black;
+  border-color: black;
   border-style: solid;
   width: 320px;
   border-radius: 7px;

@@ -208,29 +208,30 @@ const bookmarkList = (function(){
       
       <form id="js-add-bookmark-form" class = "js-add-form" aria-label="Sort Bookmarks by rating">
 
-      <h3>Add the bookmark details:</h3>
+      <h2>Add the bookmark details:</h2>
       ${errorMessage}
       <br> 
-      Title: <input type="text" name="bookmark-title-entry" ${placeholder_title}">
+      Title: <input type="text" name="bookmark-title-entry" aria-label= "title text input" ${placeholder_title}">
       <br>
-      Description: <input type="text" name="bookmark-desc-entry" class="js-bookmark-desc-entry" placeholder="Add general description">
+      Description: <input type="text" name="bookmark-desc-entry" class="js-bookmark-desc-entry" aria-label= "description text input" placeholder="Add a general description">
       <br>
-      http://www. <input type="text" name="bookmark-url-entry" ${placeholder_url}">
+      http://www. <input type="text" name="bookmark-url-entry" aria-label= "url text input" ${placeholder_url}">
       <br>
        
-      <p>Rating: </p>
-       
-      <input type="radio" name="rating" value="1" checked> 1 star<br>
-      <input type="radio" name="rating" value="2"> 2 stars<br>
-      <input type="radio" name="rating" value="3"> 3 stars<br>
-      <input type="radio" name="rating" value="4"> 4 stars<br>
-      <input type="radio" name="rating" value="5"> 5 stars<br>
+      <p aria-label= "radio inputs for bookmark rating" role="radiogroup">Rating:
+      <br>  
+      <input aria-label="radio input value 1" type="radio" name="rating" value="1" checked> 1 star<br>
+      <input aria-label="radio input value 2" type="radio" name="rating" value="2"> 2 stars<br>
+      <input aria-label="radio input value 3" type="radio" name="rating" value="3"> 3 stars<br>
+      <input aria-label="radio input value 4" type="radio" name="rating" value="4"> 4 stars<br>
+      <input aria-label="radio input value 5" type="radio" name="rating" value="5"> 5 stars<br>
       
+      </p>
       
        
       <br><br>
-      <button type="submit" class = "general-submit-button">SUBMIT</button>
-      <button type="button" class = "js-cancel-button">CANCEL</button>
+      <button type="submit" class = "general-submit-button" aria-label= "submit form button">SUBMIT</button>
+      <button type="button" class = "js-cancel-button" aria-label= "cancel form button">CANCEL</button>
       <br>
       </form>
       
