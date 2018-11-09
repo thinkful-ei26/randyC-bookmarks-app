@@ -10,9 +10,9 @@
 
 <body>
   <div class="container" role="main">
-    <h1>BOOKMARKUTOPIA</h1>
+    <h1 role = "banner">BOOKMARKUTOPIA</h1>
     
-    <!-- view mode -->
+    <!-- VIEW MODE -->
     <div class=viewMode-stuff>
     
     <div class="bookmark-add">
@@ -22,7 +22,7 @@
       </button>
         <form id="js-sort-form" class = "js-rating-form">
         <select id = "rating_value" name="SORT BY RATING" aria-label="Sort Bookmarks by rating">
-        <option value="no sort">no sort</option>
+        <option value="no sort">no filter</option>
         <option value= 1 >above 1</option>
         <option value= 2 >above 2</option>
         <option value= 3 >above 3</option>
@@ -32,8 +32,6 @@
         <input type="submit" value="SUBMIT">
         </form>
       <br>
-       
-
     </div>
    
     <!---ADD NEW ITEM FORM -->
@@ -43,15 +41,13 @@
 
     </div>
  
-    <!---REF <ul class="shopping-list js-shopping-list">-->
+    <!---BOOKMARK LIST GETS POPULATED HERE-->
     <ul class="bookmark-list js-bookmark-list">
     </ul>
   
-
+    <!--SCRPTS-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-  <script type="text/javascript" src="scripts/api_test.js"></script>
-  <!--<script type="text/javascript" src="scripts/Item.js"></script>-->
   <script type="text/javascript" src="scripts/store.js"></script>
   <script type="text/javascript" src="scripts/bookmark-list.js"></script>
   <script type="text/javascript" src="scripts/api.js"></script>

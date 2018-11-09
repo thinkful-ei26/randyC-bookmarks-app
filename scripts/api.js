@@ -4,20 +4,20 @@
 // eslint-disable-next-line no-unused-vars
 const api = (function() {
   
+  //API base url
   const BASE_URL = 'https://thinkful-list-api.herokuapp.com/randycole';
 
+  //GET
   function getItems(callback) {
     $.getJSON(`${BASE_URL}/bookmarks`, callback);
      
   }
 
+  //POST
   function createItem(newItemObject, callbackSuccess, callbackError) {
   
-    //for item name
     const newItem = JSON.stringify(newItemObject);
-
-    //console.log('>>> new item data: ', newItemObject);
- 
+  
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',
@@ -29,16 +29,13 @@ const api = (function() {
   
   }
 
+  //PATCH
   function updateItem(id,updateData,callbackSuccess, callbackError){
 
     const stringifiedUpdateData = JSON.stringify(updateData);
 
-    //testing
-    //console.log('--> to go to server: ',updateData);
-
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
-      //url: `${BASE_URL}/items/${id}`,
       method: 'PATCH',
       contentType: 'application/json',
       data: stringifiedUpdateData,
@@ -51,7 +48,6 @@ const api = (function() {
 
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
-      //url: `${BASE_URL}/items/${id}`,
       method: 'DELETE',
       contentType: 'application/json',
       success: callbackSuccess,
