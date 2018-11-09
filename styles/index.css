@@ -13,28 +13,10 @@ button, input[type="text"] {
   width: 350px;
 }
 
-#js-add-bookmark-form {
 
-  margin-bottom: 20px;
-  border: 1px solid grey;
-  padding: 20px;
-  border-radius: 10px;
-
-
-}
-
-.js-add-form {
-
-  margin-bottom: 20px;
-  border: 1px solid grey;
-  padding: 20px;
-  border-radius: 10px;
-
-
-}
 
 .general-submit-button {
-
+ 
   width: 150px;
   border-radius: 7px;
 
@@ -52,23 +34,21 @@ button:hover:disabled {
   display: none;
 }
 
-#bookmark-list-item {
-  width: 250px;/* 250px */
+
+/*#bookmark-list-item*/
+.bookmark-list-item {
+  width: 850px;/* 250px */
+  background-color: orange;
 }
 
 .container {
-  max-width: 600px;
-  margin-left: 0;
+  max-width: 800px;
+  margin-left: 0 auto;
   padding-left: 125px;
   /*margin: 0 auto;*/
 }
 
-.bookmark-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-
+ 
 
 .bookmark-add {
   list-style: none;
@@ -83,16 +63,58 @@ button:hover:disabled {
 }
 
 .viewMode-stuff {
-
-  padding-left: 0;
+ 
+  padding-left: 40px;
+   
 
 }
 
-.bookmark-list > li {
+.js-rating-form {
+
+  padding-left: 300px;
+
+}
+
+.right-rating {
+
+  padding-left: 400px;
+
+}
+
+/*
+#js-add-bookmark-form {
+  width: 550px;
+  padding-left: 0;
   margin-bottom: 20px;
   border: 1px solid grey;
   padding: 20px;
   border-radius: 10px;
+  
+
+}
+*/
+
+.js-add-form {
+  width: 550px;
+  padding-left: 0;
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 10px;
+   
+
+}
+
+
+.bookmark-list > li {
+  width: 550px;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 10px;
+   
 }
 
 .bookmark-item {
@@ -139,8 +161,18 @@ button:hover:disabled {
 
 }
 
- .js-start-add-button {
+  
 
-  color: red;
+.js-start-add-button {
 
- }
+  width: 150px;
+  border-radius: 7px;
+
+}
+
+.Add-submit-button {
+
+  width: 150px;
+  border-radius: 7px;
+
+}

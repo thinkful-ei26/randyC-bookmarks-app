@@ -4,7 +4,21 @@
 // eslint-disable-next-line no-unused-vars
 const store = (function(){
   const addItem = function(item) {
+
+    //should be set to false eventually for startup
+    //add expandedView key and sets it to true
+    item.expandedView = true;
+
+    //add key for user to filer by rating
+    //item.userFilter = '1';
+
+    //add key for eror handling mode
+    //item.errorMode = null;
+
+    //Item being EDITED key could be added here...
+
     this.items.push(item);
+
   };
 
   const findById = function(id) {
@@ -20,9 +34,11 @@ const store = (function(){
     this.items = this.items.filter(item => item.id !== id);
   };
 
+  //update stuff
   const findAndUpdate = function(id, newData){
 
     const item = this.findById(id);
+ 
     Object.assign(item,newData); 
 
   };
@@ -51,11 +67,16 @@ const store = (function(){
     this.searchTerm = term;
   };
 
+  //REF  items: [],
+    //hideCheckedItems: false,
+    //searchTerm: '',
+    //viewMode: 'reg_mode',
+
   return {
     items: [],
-    hideCheckedItems: false,
-    searchTerm: '',
     viewMode: 'reg_mode',
+    userSort: 'no sort',
+    errorMode: false,
 
     addItem,
     findById,

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>BOOKMARKTOPIA</title>
+  <title>BOOKMARKUTOPIA</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="styles/index.css">
@@ -10,20 +10,32 @@
 
 <body>
   <div class="container">
-    <h1>BOOKMARKTOPIA</h1>
+    <h1>BOOKMARKUTOPIA</h1>
+ 
     <div class=viewMode-stuff>
     
     <div class="bookmark-add">
       <!---ADD NEW ITEM BUTTON -->
       <button class="js-start-add-button" ${editBtnStatus}>
-        <span class="button-label">Add A New Bookmark</span>
+        <p class="button-label">Add A New Bookmark</p>
       </button>
+        <form id="js-sort-form" class = "js-rating-form">
+        <select id = "rating_value" name="SORT BY RATING">
+        <option value="no sort">no sort</option>
+        <option value="high to low">high to low</option>  
+        <option value= 1 >1</option>
+        <option value= 2 >2</option>
+        <option value= 3 >3</option>
+        <option value= 4 >4</option>
+        <option value= 5 >5</option>
+        </select>
+        <input type="submit" value="SUBMIT">
+        </form>
       <br>
-      <br>
+       
 
     </div>
-  
-
+   
     <!---ADD NEW ITEM FORM -->
     
     <form id="js-add-bookmark-form" class = "js-add-form">
@@ -41,12 +53,13 @@
        -->
        
     </form>
-  
-</div>
+    </div>
+ 
     <!---REF <ul class="shopping-list js-shopping-list">-->
     <ul class="bookmark-list js-bookmark-list">
     </ul>
-  </div>
+  
+
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
   <script type="text/javascript" src="scripts/api_test.js"></script>

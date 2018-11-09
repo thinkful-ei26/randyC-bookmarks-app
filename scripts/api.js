@@ -16,6 +16,8 @@ const api = (function() {
   
     //for item name
     const newItem = JSON.stringify(newItemObject);
+
+    console.log('>>> new item data: ', newItemObject);
  
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
@@ -31,6 +33,9 @@ const api = (function() {
   function updateItem(id,updateData,callbackSuccess, callbackError){
 
     const stringifiedUpdateData = JSON.stringify(updateData);
+
+    //testing
+    console.log('--> to go to seerver: ',updateData);
 
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,

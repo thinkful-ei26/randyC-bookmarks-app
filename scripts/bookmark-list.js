@@ -5,51 +5,34 @@
 const bookmarkList = (function(){
  
   function generateItemElement(item) {
-
-
-    //VIEW MODES
-
-    //COMPACT MODE
-
-    //EXPANDED MODE
-
-    //EDIT MODE
-
-    //ADD MODE
  
 
-    console.log(api_test.helloThere);//testing alternate module
+    //console.log(api_test.helloThere);//testing alternate module
+ 
+    //REF change a class 
+    //const checkedClass = item.expandedView ? 'shopping-item__checked' : '';
 
-
-    
-    //?
-    const checkedClass = item.itemExpanded ? 'shopping-item__checked' : '';
-
-    //if checked edit is disabled
-    const editBtnStatus = item.itemExpanded ? 'disabled' : '';
-
+    //REF disable a button
+    //const editBtnStatus = item.expandedView ? 'disabled' : '';
+     
     
 
 
     //REF let itemTitle = `<span class="shopping-item ${checkedClass}">${item.name}</span>`;
-    let itemTitle = `<span class="bookmark-item ${checkedClass}">${item.title}</span>`;
+    let itemTitle = `<span class="bookmark-item">${item.title}</span>`;
 
-    let itemDescription = `<span class="bookmark-item ${checkedClass}">${item.desc}</span>`;
+    let itemDescription = `<span class="bookmark-item">${item.desc}</span>`;
 
-    let itemUrl = `<span class="bookmark-item ${checkedClass}">${item.url}</span>`;
+    let itemUrl = `<span class="bookmark-item">${item.url}</span>`;
  
-    let itemRating = `<span class="bookmark-item ${checkedClass}">${item.rating}</span>`;
+    let itemRating = `</span>${item.rating}</span>`;
 
-    let showExpandedVal = `<span class="bookmark-item ${checkedClass}">${item.itemExpanded}</span>`;
+    let showExpandedVal = `<span class="bookmark-item">${item.expandedView}</span>`;
 
     //default to collapsed...?
-    let itemView = `
 
-      <li class="js-item-element" data-item-id="${item.id}">
-      <p> nothing...</p>
-      </li>
-     
-    `;
+    //REF<li class="js-item-element" data-item-id="${item.id}">
+    let itemView = '';
 
 
     // >>>  COMPACT MODE -- itemView: 'compact'
@@ -73,12 +56,24 @@ const bookmarkList = (function(){
     }
 
     //expanded view of item
-    if(item.itemExpanded === true){
+    if(item.expandedView === true){
 
       itemView = `
 
       <li class="js-item-element" data-item-id="${item.id}">
-      <p> expanded view...</p>
+      <p class = "right-rating" >RATING: ${itemRating}</p>
+      ${itemTitle}
+      ${itemDescription} 
+      ${itemUrl}
+       
+      <div class="shopping-item-controls">
+        <button class="bookmark-item-toggle js-collapse-button">
+          <span class="button-label">collapse/expand</span>
+        </button>
+        <button class="bookmark-item-delete js-item-delete">
+          <span class="button-label">delete</span>
+        </button>
+      </div>
       </li>
        
       `;
@@ -87,13 +82,18 @@ const bookmarkList = (function(){
     } 
 
 
+
+    
+
+
     //collapsed view of item only Title and rating
-    if(item.itemExpanded === false){
+    if(item.expandedView === false){
 
       itemView = `
        
-      <li class="js-item-element" data-item-id="${item.id}">
-      <p> collapsed view...</p>
+      <li class="js-item-collapsed" data-item-id="${item.id}">
+      <p class = "right-rating" >RATING: ${itemRating}</p>
+      <p>${itemTitle}</p>
       </li>
 
       `;
@@ -103,59 +103,19 @@ const bookmarkList = (function(){
   
     //default expanded view ... 
 
-    console.log('item expanded ? >>>>> ',item.itemExpanded);//testing alternate module
+    //console.log('item expanded ? >>>>> ',item.itemExpanded);//testing alternate module
 
     
-    return `
-    
-    <li class="js-item-element" data-item-id="${item.id}">
-    
-    ${itemTitle}
-    ${itemDescription} 
-    ${itemUrl}
-    ${itemRating} 
-    ${showExpandedVal}
-    <div class="shopping-item-controls">
-      <button class="bookmark-item-edit js-item-edit" ${editBtnStatus}>
-        <span class="button-label">edit</span>
-      </button>
-      <button class="bookmark-item-toggle js-collapse-button">
-        <span class="button-label">collapse/expand</span>
-      </button>
-      <button class="bookmark-item-delete js-item-delete">
-        <span class="button-label">delete</span>
-      </button>
-    </div>
-  </li>
-  `;   
-   
-
-    //compacted view test... 
-    /*
-    return `
-    
-    <li class="js-item-element" data-item-id="${item.id}">
-    ${itemTitle}
-    ${itemRating} 
-    </li>
-  `;   
-    */
-
-  
-    //adjust for expanded or collapsed
-    /*
     return `
     ${itemView}
-      
-   `;
-    */
+  `;   
     
 
   }
   
   
-  function generateShoppingItemsString(shoppingList) {
-    const items = shoppingList.map((item) => generateItemElement(item));
+  function generateBookmarkItemsString(bookmarkList) {
+    const items = bookmarkList.map((item) => generateItemElement(item));
     return items.join('');
   }
   
@@ -172,49 +132,59 @@ const bookmarkList = (function(){
       items = items.filter(item => !item.checked);
     }
     */
-
-
-    // Filter item list if store prop `searchTerm` is not empty
-    /*
-    if (store.searchTerm) {
-      items = items.filter(item => item.name.includes(store.searchTerm));
-    }
-    */
-    
-
-
-    const bookmarkItemsString = generateShoppingItemsString(items);
-    
-    //ViewMode
-    /*
-    let itemAddForm = '';
-    let itemAddControl = '';
-
-    //REG MODE
-    if(store.viewMode === 'reg_mode'){ 
      
-      itemAddControl = `
-      <button class="js-bookmark-add">
-      <span class="button-label">Add A New Bookmark</span>
-      </button>
-      `;
+    // Filter item list...
 
+    //set var for userSort
+    let myUserSortOption = store.userSort;
+
+    console.log('store.userSort = ',myUserSortOption);
+    
+    if (myUserSortOption !== 'no sort' && myUserSortOption !== 'high to low') {
+
+      myUserSortOption = parseInt(myUserSortOption);
+       
+      items = items.filter(item => item.rating === myUserSortOption);
 
     }
 
-    //ADD ITEM MODE
-    if(store.viewMode === 'add_mode'){
+    //Highest to lowest
+    
+    //not working...
+    /*
+    if (myUserSortOption === 'high to low') {
+       
 
-      itemAddForm = ` 
-      <label for="shopping-list-entry">Add a bookmark title</label>
-      <input type="text" name="shopping-list-entry" class="js-shopping-list-entry" placeholder="something snappy">
-      <button type="submit">ADD A NEW BOOKMARK</button>
-      `;
+      //5 
+      const items_5 = items.filter(item => {item.rating === 5;items.push(items_5);});
+  
+      //4 
+      const items_4 = items.filter(item => item.rating === 4);
+
+      items.push(items_4);
+
+      //3 
+      const items_3 = items.filter(item => item.rating === 3);
+
+      items.push(items_3);
+
+      //2 
+      const items_2 = items.filter(item => item.rating === 2);
+
+      items.push(items_2);
+
+      //1 
+      const items_1 = items.filter(item => item.rating === 1);
+
+      items.push(items_1); 
 
     }
     */
+    
 
 
+    const bookmarkItemsString = generateBookmarkItemsString(items);
+     
     ////////
 
     // insert that HTML into the DOM
@@ -228,13 +198,26 @@ const bookmarkList = (function(){
       itemAddForm = `
       
       <input type="text" name="bookmark-title-entry" class="js-bookmark-title-entry" placeholder="Add title here -- something snappy">
-      <br><br>
+      <br>
       <input type="text" name="bookmark-desc-entry" class="js-bookmark-desc-entry" placeholder="Add general description">
-      <br><br>
+      <br>
       <input type="text" name="bookmark-url-entry" class="js-bookmark-url-entry" placeholder="Add url here ... http://.... enter url">
+      <br>
+       
+      <p>Rating: </p>
+      <form>
+      <input type="radio" name="rating" value="1" checked> 1 star<br>
+      <input type="radio" name="rating" value="2"> 2 stars<br>
+      <input type="radio" name="rating" value="3"> 3 stars<br>
+      <input type="radio" name="rating" value="4"> 4 stars<br>
+      <input type="radio" name="rating" value="5"> 5 stars<br>
+      </form>
+       
       <br><br>
       <button type="submit" class = "general-submit-button">SUBMIT</button>
-      <br><br> 
+      <br>
+      
+      
       
       `;
  
@@ -310,11 +293,15 @@ const bookmarkList = (function(){
       
       
       //testing -- will get from input text
-      const newItemRating = '1';
+ 
+      const newItemRating = $('input[name="rating"]:checked').val();
       
 
       //testing -- gets generated
       const newItemId = 'not yet';
+
+      //
+      const newItemExpanded = false;
 
 
       //added new item object 
@@ -325,6 +312,7 @@ const bookmarkList = (function(){
         desc: newItemDescription,
         url: newItemUrl,
         rating: newItemRating,
+        expandedView: newItemExpanded,
         
 
       };
@@ -335,6 +323,10 @@ const bookmarkList = (function(){
       api.createItem(newItemObject, function (newItem){
         
         store.addItem(newItem);
+
+        //change back to regular view since adding is now done....
+        store.viewMode = 'reg_mode';
+
         render();
 
       }, (error) => {window.alert(error.responseJSON.message);});
@@ -355,21 +347,104 @@ const bookmarkList = (function(){
 
 
 
-  //this for collapse/expand item
-  function handleItemCheckClicked() {
+  //this for collapse when collapse button is visible
+  function handleItemCollapseClicked() {
+
     $('.js-bookmark-list').on('click', '.js-collapse-button', event => {
       const item = store.findById(getItemIdFromElement(event.currentTarget));
-      api.updateItem(item.id, {checked: !item.itemExpanded}, () => {
+      //const id = getItemIdFromElement(event.currentTarget);
+
+      //const passThis = {expandedView: false};
+
+      //testing
+      //api.updateItem(id,passThis,() =>{}, () =>{});
+
+
+      //console.log('expandedView: ',item.expandedView);
+
+      //*** QUESTION #1
+       
+      //this needs to get stuff back to server! PATCH ERROR!
+
+      /*
+      api.updateItem(item.id, {expandedView: false}, () => {
         //store.findAndUpdate(item.id, {checked: !item.checked});
-        store.findAndUpdate(item.id, {itemExpanded: !item.itemExpanded});
+        store.findAndUpdate(item.id, {expandedView: false});
         render();
       }, (error) => {window.alert(error.responseJSON.message);});
+      */
+
+      /* 
+      api.updateItem(item.id, {expandedView: !item.expandedView}, 
+      
+        function() {
+          //store.findAndUpdate(item.id, {checked: !item.checked});
+          store.findAndUpdate(item.id, {expandedView: !item.expandedView});
+          render();
+        },
+        function(error){
+          window.alert(error.responseJSON.message);
+        
+        }
+        
+      );
+      */  
+       
+ 
+      item.expandedView = false;//temporary 
+
+      render();
+ 
+ 
+      
+
     });
+
+
   }
   
+   
+  //NOT WORKING...
+  //this for expand when its collapsed when no button is visible
+  function handleItemExpandClicked() {
+
+    $('.bookmark-list').on('click', '.js-item-collapsed', event => {
+      const item = store.findById(getItemIdFromElement(event.currentTarget));
+  
+ 
+      item.expandedView = true;//temporary 
+
+      render();
+ 
+
+    });
 
 
-  //delete works
+  }
+
+
+  //SET SORTING OPTION
+  function handleSortOptionSubmit() {
+    $('.js-rating-form').submit(function (event) {
+
+      event.preventDefault();
+
+      const userSortOption = $('#rating_value').val();
+
+      console.log('rating sort option: ',userSortOption);
+
+      store.userSort = userSortOption;
+
+      render();
+
+    });
+
+  }
+
+
+
+
+  //delete button works!
   function handleDeleteItemClicked() {
     // like in `handleItemCheckClicked`, we use event delegation
     $('.js-bookmark-list').on('click', '.js-item-delete', event => {
@@ -412,7 +487,7 @@ const bookmarkList = (function(){
       render();
     });
   }
-*/
+  */
 
 
   function handleItemStartEditing() {
@@ -424,12 +499,13 @@ const bookmarkList = (function(){
   }
   
   function bindEventListeners() {
+    handleSortOptionSubmit();
     handleNewItemSubmit();
-    handleItemCheckClicked();
+    handleItemExpandClicked();
+    handleItemCollapseClicked();
     handleDeleteItemClicked();
     handleEditShoppingItemSubmit();
     handleToggleFilterClick();
-    //handleShoppingListSearch();
     handleItemStartEditing();
     handleStartItemSubmit();
   }
